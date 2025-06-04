@@ -12,9 +12,7 @@
     "downloads",
     "declarativeNetRequestWithHostAccess"
   ],
-  "host_permissions": [
-        "*://chborel.ch/*"
-    ],
+  "host_permissions": [],
   "declarative_net_request": {
     "rule_resources": [
       {
@@ -32,11 +30,5 @@
   },
   "icons": {
     "128": "icon128.png"
-  },
-  "content_scripts": [
-    {
-      "matches": ["http://chborel.ch/*", "https://chborel.ch/*"],
-      "js": ["content.js"]
-    }
-  ]
+  }
 }

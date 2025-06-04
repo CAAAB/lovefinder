@@ -1,4 +1,4 @@
-const testMode = true; // Set this to false to enable fetching
+const testMode = false; // Set this to false to enable fetching
 
 document.getElementById('openMainPageBtn').addEventListener('click', () => {
   // Open the main page
@@ -58,6 +58,7 @@ document.getElementById('fetchFollowersBtn').addEventListener('click', async () 
       console.log(`Data downloaded and saved for ${username}.`);
     } catch (err) {
       console.error(`Error downloading data for ${username}:`, err);
+      alert(`Failed to download data for ${username}. See console for details.`);
     }
   }
 
@@ -67,6 +68,7 @@ document.getElementById('fetchFollowersBtn').addEventListener('click', async () 
   // Save usernames to local storage
   localStorage.setItem('watchlistUsernames', usernamesText);
 
+  alert('Download process finished for all selected users. Opening main page.');
   // Open the main page after fetching is complete
   chrome.tabs.create({ url: 'main.html' });
 });
@@ -160,51 +162,3 @@ async function fetchFollowingsPage(userId, after) {
       )
   );
 }
-
-document.getElementById('activateButton').addEventListener('click', function() {
-  const uniqueCode = document.getElementById('uniqueCode').value;
-  if (uniqueCode) {
-    chrome.storage.local.set({ uniqueCode: uniqueCode }, function() {
-      fetchContent(uniqueCode);
-    });
-  } else {
-    alert('Please enter your unique code.');
-  }
-});
-
-function fetchContent(uniqueCode) {
-  fetch(`https://chborel.ch/wp-content/uploads/instacram/instacram_popup_CSP.php?uniquecode=${uniqueCode}`)
-    .then(response => {
-      if (!response.ok) {
-        console.log(response);
-        throw new Error('Network response was not ok');
-      }
-      return response.text();
-    })
-    .then(data => {
-      console.log('Fetched Content:', data); // Log the fetched content
-
-      // Save the content to a file
-      const blob = new Blob([data], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-
-      // Update the DOM with the fetched content
-      document.getElementById('registration').style.display = 'none';
-
-      // Update the tab creation link to point to the new file
-      document.getElementById('openMainPageBtn').addEventListener('click', () => {
-        chrome.tabs.create({ url: url });
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching content:', error);
-      alert('Failed to activate the extension. Please check your unique code.');
-    });
-}
-
-// Check if the unique code is already stored
-chrome.storage.local.get(['uniqueCode'], function(result) {
-  if (result.uniqueCode) {
-    fetchContent(result.uniqueCode);
-  }
-});
