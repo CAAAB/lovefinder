@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instagram Followers Extension</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 300px;
+      padding: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+    }
+    textarea {
+      width: calc(100% - 22px);
+      height: 100px;
+      padding: 10px;
+      margin: 5px 0;
+      resize: vertical;
+    }
+    #activation {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="registration">
+    <h2>Create an account on chborel.ch/instacram</h2>
+    <p>Then enter your secret code below:</p>
+    <input type="text" id="uniqueCode" placeholder="Enter secret code">
+    <button id="activateButton">Activate</button>
+  </div>
+  <button id="openMainPageBtn">Open Main Page</button>
+  <h3>Watchlist</h3>
+  <textarea id="usernames" placeholder="Enter Instagram Username"></textarea>
+  <button id="fetchFollowersBtn">Stalk</button>
+  <div id="loadingSpinner" style="display: none;">
+    <div style="border: 16px solid #f3f3f3; border-top: 16px solid #3498db; border-radius: 50%; width: 120px; height: 120px; animation: spin 2s linear infinite; margin: 20px auto;"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

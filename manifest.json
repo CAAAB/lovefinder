@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "InstaCram",
+  "version": "1.0",
+  "description": "Helper extension to chborel.ch/instacram",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "alarms",
+    "storage",
+    "tabs",
+    "downloads",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+        "*://chborel.ch/*"
+    ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://chborel.ch/*", "https://chborel.ch/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

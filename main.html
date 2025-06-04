@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instagram Followers Main Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #f4f4f9;
+      color: #333;
+      height: 100vh;
+    }
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .main {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    h4 {
+      color: #555;
+      margin-bottom: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea {
+      width: calc(100% - 22px);
+      height: 100px;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .file-browser ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .file-browser li {
+      cursor: pointer;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+    }
+    .file-browser li.selected {
+      background-color: #e0e0e0;
+    }
+    .results {
+      font-size: 1.2em;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+    .results h4 {
+      margin-bottom: 10px;
+    }
+    .results ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .results li {
+      flex: 1 1 25%;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+    .collapse-icon {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.3s;
+    }
+    .collapse-icon.open {
+      transform: rotate(90deg);
+    }
+    .user-header {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .download-icon {
+      margin-right: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .download-icon::before {
+      content: '\f019'; /* Font Awesome download icon */
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
+    .magnifier {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      opacity: 0.1;
+    }
+  </style>
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h1>InstaCram</h1>
+    <h4>Upload Files</h4>
+    <input type="file" id="fileUpload" multiple>
+
+    <hr>
+
+    <div class="file-browser">
+      <h4>Users</h4>
+      <ul id="fileList"></ul>
+    </div>
+  </div>
+
+  <div class="main">
+    <svg class="magnifier" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M10 2a8 8 0 0 1 5.64 14.36l5.66 5.66a1 1 0 0 1-1.41 1.42l-5.66-5.66A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 10 4z"/>
+    </svg>
+    <div class="results" id="results">
+      <h4>Comparison</h4>
+      <div id="comparisonResults"></div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
