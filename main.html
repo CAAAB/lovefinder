@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Instagram Followers Main Page</title>
+  <title>TrueLove - Results</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -21,6 +21,7 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      flex-shrink: 0; /* Prevent sidebar from shrinking */
     }
     .main {
       flex-grow: 1;
@@ -30,7 +31,7 @@
     }
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px; /* Reduced margin-bottom */
       color: #555;
     }
     h4 {
@@ -138,7 +139,8 @@
 </head>
 <body>
   <div class="sidebar">
-    <h1>InstaCram</h1>
+    <h1>TrueLove</h1>
+    <img src="icon128.png" alt="TrueLove Logo" style="width: 64px; height: 64px; display: block; margin: 5px auto 20px auto;">
     <h4>Upload Files</h4>
     <input type="file" id="fileUpload" multiple>
 
